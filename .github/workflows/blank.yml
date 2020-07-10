@@ -11,6 +11,6 @@ jobs:
 
     steps:
     - name: Run a one-line script
-      run: echo Hello, world!
+      run: echo 'This was a change to a ${{github.ref_type}} - ${{github.ref}}'
 
   
