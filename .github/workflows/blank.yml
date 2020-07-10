@@ -4,6 +4,8 @@ name: CI
 
 on:
   create:
+    tag: 
+      - 'v*'
 
 jobs:
   echo:
