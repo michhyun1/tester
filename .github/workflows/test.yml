@@ -3,7 +3,8 @@
 name: TEST
 
 on:
-  create
+  create:
+  delete:
 
 jobs:
   echo:
