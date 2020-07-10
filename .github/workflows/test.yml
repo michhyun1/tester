@@ -12,6 +12,6 @@ jobs:
 
     steps:
     - name: Run a one-line script
-      run: echo 'This was a change to a ${{github.ref_type}} - ${{github.ref}}'
+      run: echo 'Event - ${{github.event_name}} - REF - ${{github.ref}}'
 
   
