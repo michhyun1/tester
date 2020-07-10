@@ -3,8 +3,8 @@
 name: TEST
 
 on:
-  create:
-  delete:
+  push:
+    tags: 'v*' 
 
 jobs:
   echo:
