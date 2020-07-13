@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: TEST
+name: RELEASE
 
 on:
   release:
@@ -9,8 +9,6 @@ on:
 jobs:
   echo:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@master
       - run: echo 'RELEASED'
   
