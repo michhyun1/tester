@@ -11,13 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: echo 'Event - ${{github.event_name}} - REF - ${{github.ref}}'
-    - uses: octokit/request-action@v2.x
-      id: get_latest_tag
-      with:
-        route: GET /repos/octocat/Hello-World/git/matching-refs/heads/feature
+    - name: 'Get Previous tag'
+      id: previoustag
+      uses: "WyriHaximus/github-action-get-previous-tag@master"
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - run: "echo latest release: ${{ steps.get_latest_tag.outputs.data }}"
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    - run: echo '${{ steps.previoustag.outputs.tag }}'
 
   
