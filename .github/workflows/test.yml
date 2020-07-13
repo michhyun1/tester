@@ -16,7 +16,8 @@ jobs:
       id: get_latest_tag
       with:
         route: GET /repos/:owner/:repo/git/matching-refs/tags
-        # repository: ${{ github.repository }}
+        repository: ${{ github.repository }}
+        media-type: "{}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: "echo latest release: ${{ steps.get_latest_tag.outputs.data }}"
