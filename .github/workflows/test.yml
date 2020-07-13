@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Run a one-line script
-      run: echo 'Event - ${{github.event_name}} - REF - ${{github.ref}}'
+    - run: echo 'Event - ${{github.event_name}} - REF - ${{github.ref}}'
     - uses: octokit/request-action@v2.x
       id: get_latest_tag
       with:
