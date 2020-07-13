@@ -1,0 +1,36 @@
+name: Nick test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build and Run Unit Tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+      if: github.event_name == 'pull_request'
+      with:
+        fetch-depth: 0
+        ref: ${{ github.event.pull_request.head.ref }}
+
+    - uses: actions/checkout@v2
+      if: github.event_name == 'push'
+      with:
+        fetch-depth: 0
+        
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i
+    - run: npm run start
