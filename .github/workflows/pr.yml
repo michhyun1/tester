@@ -27,11 +27,11 @@ jobs:
       if: github.event_name == 'push'
       with:
         fetch-depth: 0
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
     - run: npm i
     - run: npm run start
