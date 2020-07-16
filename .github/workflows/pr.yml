@@ -1,42 +1,23 @@
-name: Nick test
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches:
-      - master
+name: filter commit nessage
+on: pull_request
 
 jobs:
-  build:
-    name: Build and Run Unit Tests
+  build-and-test:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
-    - uses: actions/checkout@v2
-      if: github.event_name == 'pull_request'
-      with:
-        fetch-depth: 0
-        ref: ${{ github.event.pull_request.head.ref }}
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-    - run: echo "$GITHUB_CONTEXT"
-      
-    - uses: actions/checkout@v2
-      if: github.event_name == 'push'
-      with:
-        fetch-depth: 0
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-    - run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v1
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm i
-    - run: npm run start
+      - name : GITHUB CONTEXT
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: get commit message
+        run: |
+           echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
+      - name: show commit message
+        run : echo $commitmsg
+
+      - name: step1
+        if: contains( env.commitmsg , 'try' )
+        run: echo hello
