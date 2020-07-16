@@ -17,6 +17,9 @@ jobs:
         node-version: [12.x]
 
     steps:
+    - uses: actions/checkout@v1
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
     - uses: actions/checkout@v2
       if: github.event_name == 'pull_request'
       with:
@@ -31,7 +34,5 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
     - run: npm i
     - run: npm run start
