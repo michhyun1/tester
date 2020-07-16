@@ -28,8 +28,8 @@ jobs:
       with:
         fetch-depth: 0
     - name : GITHUB CONTEXT
-    env:
-      GITHUB_CONTEXT: ${{ toJson(github) }}
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
     - run: echo "$GITHUB_CONTEXT"
 
     - name: Use Node.js ${{ matrix.node-version }}
