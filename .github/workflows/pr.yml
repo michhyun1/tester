@@ -25,9 +25,11 @@ jobs:
 
     - uses: actions/checkout@v2
       if: github.event_name == 'push'
-      with:
+      with: 
         fetch-depth: 0
-        
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+    
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
