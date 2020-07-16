@@ -28,6 +28,7 @@ jobs:
       with:
         fetch-depth: 0
     - name : GITHUB CONTEXT
+      uses: actions/checkout@v1
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
     - run: echo "$GITHUB_CONTEXT"
