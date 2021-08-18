@@ -11,6 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use Github Secret
-        run: echo ${{secrets.GITHUB_SECRETS}}
+        run: echo ${{secrets.SECRET_NAME}}
 
   
