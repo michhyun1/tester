@@ -5,7 +5,7 @@ name: TEST
 on:
   workflow_run:
     workflows: ["Trigger Test"]
-    types: [completed]
+    types: [requested]
 jobs:
   echo:
     runs-on: ubuntu-latest
