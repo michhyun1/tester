@@ -9,6 +9,7 @@ on:
       - completed
 jobs:
   echo:
+    name: Boom
     runs-on: ubuntu-latest
     steps:
       - name: Use Github Secret
